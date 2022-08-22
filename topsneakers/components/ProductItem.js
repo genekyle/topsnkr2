@@ -10,7 +10,6 @@ function ProductItem({product}) {
                 <img
                     src={product.image}
                     alt={product.name}
-                    className="rounded shadow"
                 />
             </a>
         </Link>
