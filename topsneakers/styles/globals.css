@@ -36,3 +36,7 @@ a {
 .primary-button{
   @apply rounded bg-transparent py-2 px-4 shadow border border-gray-300 hover:bg-slate-100 active:bg-slate-200;
 }
+
+input, select, textarea {
+  @apply rounded border p-2 outline-none ring-slate-500 focus:ring;
+}

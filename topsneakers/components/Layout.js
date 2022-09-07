@@ -1,23 +1,38 @@
-import React, { Children, useState } from 'react';
+import React, { Children, useState, useContext, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import { Store } from '../utils/store';
+import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from 'react-toastify';
+import { useSession } from 'next-auth/react';
 
 export default function Layout({ title, children }) {
+
+    const { status, data: session } = useSession();
+
+    const { state, dispatch } = useContext(Store);
+    const { cart } = state;
+    const [cartItemsCount, setCartItemsCount] = useState(0);
+    useEffect(() => {
+        setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0))
+    },[cart.cartItems]);
     const[isNavOpen, setIsNavOpen] = useState(false);
   return (
     <>
 
         <Head>
-            <title>{title ? title + ' - topsneakerstore':'topsneakers'}</title>
+            <title>{title ? title + ' - vntgp':'VNTGP'}</title>
             <meta name="description" content="Online Sneaker Apparel and Accessories Store" />
             <link rel="icon" href="/favicon.ico" />
         </Head>
+
+        <ToastContainer position="bottom-center" limit={1} />
 
         <div className="flex min-h-screen flex-col justify-between">
             <header>
                 <nav className='flex h-12 items-center px-4 justify-between shadow'>
                     <Link href="/">
-                        <a className='text-lg font-bold'>topsneakers</a>
+                        <a className='text-lg font-bold'>vntgplug.</a>
                     </Link>
                     <div className="flex m-0 p-0 h-8 max-w-xs my-0 mx-[30px] cursor-pointer bg-white" >
                         <form action="" class="relative mx-auto w-max cursor-pointer">
@@ -29,8 +44,25 @@ export default function Layout({ title, children }) {
                         </form>
                     </div>
                     <div className="hidden overflow-hidden md:block">
-                        <Link href="/cart"><a className='p-2'>Cart</a></Link>
-                        <Link href="/login"><a className='p-2'>Login</a></Link>
+                        <Link href="/cart">
+                            <a className='p-2'>Cart
+                            {cartItemsCount > 0 && (
+                                <span className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
+                                    {cartItemsCount}
+                                </span>
+                            )}
+                            </a>
+                        </Link>
+                        {status === 'loading' ? ('Loading'):
+                        
+                            session?.user ? (session.user.name)
+                            :
+                        (
+                            <Link href="/login">
+                                <a className="p-2">Login</a>
+                            </Link>
+                        )}
+
                     </div>
                     <div class="flex md:hidden overflow-hidden cursor-pointer"
                     onClick={() => setIsNavOpen((prev) => !prev)}

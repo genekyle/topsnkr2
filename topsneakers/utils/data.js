@@ -1,4 +1,20 @@
+import bcrypt from 'bcryptjs';
+
 const data = {
+    users: [
+        {
+            name: 'G',
+            email: 'genomaga@gmail.com',
+            password: bcrypt.hashSync('123456'),
+            isAdmin: true,
+        },
+        {
+            name: 'k',
+            email: 'kimmy@gmail.com',
+            password: bcrypt.hashSync('123456'),
+            isAdmin: false,
+        }
+    ],
     products: [
         {
             name: 'Nike Dunk Low "Panda"',
@@ -10,6 +26,7 @@ const data = {
             rating: 4.9,
             NumReviews: 7,
             sizeAvailable: [6, 10],
+            sizing:[],
             images:
                 [
                     { src: '/images/pandalows1.png', key: 1},
