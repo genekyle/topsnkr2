@@ -4,7 +4,10 @@ import Link from 'next/link';
 import { Store } from '../utils/store';
 import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer } from 'react-toastify';
-import { useSession } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
+import { Menu } from '@headlessui/react'
+import DropdownLink from './DropdownLink';
+import Cookies from 'js-cookie';
 
 export default function Layout({ title, children }) {
 
@@ -16,6 +19,14 @@ export default function Layout({ title, children }) {
     useEffect(() => {
         setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0))
     },[cart.cartItems]);
+
+    const logoutClickHandler = () => {
+        Cookies.remove('cart');
+        dispatch({ type: 'CART_reset'});
+        signOut({ callbackUrl: '/login'});
+    };
+
+
     const[isNavOpen, setIsNavOpen] = useState(false);
   return (
     <>
@@ -43,7 +54,7 @@ export default function Layout({ title, children }) {
                             </svg>
                         </form>
                     </div>
-                    <div className="hidden overflow-hidden md:block">
+                    <div className="hidden md:block">
                         <Link href="/cart">
                             <a className='p-2'>Cart
                             {cartItemsCount > 0 && (
@@ -55,7 +66,30 @@ export default function Layout({ title, children }) {
                         </Link>
                         {status === 'loading' ? ('Loading'):
                         
-                            session?.user ? (session.user.name)
+                            session?.user ? (
+                                <Menu as="div" className="relative inline-block">
+                                    <Menu.Button className="text-natural-700">
+                                        {session.user.name}
+                                    </Menu.Button>
+                                    <Menu.Items className="absolute right-0 w-56 origin-top-right bg-white shadow-lg">
+                                        <Menu.Item>
+                                            <DropdownLink href="/profile" className="dropdown-link">
+                                                Profile
+                                            </DropdownLink>
+                                        </Menu.Item>
+                                        <Menu.Item>
+                                            <DropdownLink href="/order-history" className="dropdown-link">
+                                                Order History
+                                            </DropdownLink>
+                                        </Menu.Item>
+                                        <Menu.Item>
+                                            <a href="#" className="dropdown-link" onClick={logoutClickHandler}>
+                                                Logout
+                                            </a>
+                                        </Menu.Item>
+                                    </Menu.Items>
+                                </Menu>
+                            )
                             :
                         (
                             <Link href="/login">
@@ -100,17 +134,34 @@ export default function Layout({ title, children }) {
                                 <line x1="6" y1="6" x2="18" y2="18" />
                             </svg>
                         </div>
-                        <ul className="flex flex-col items-center justify-between min-h-[250px]">
-                        <li className="border-b border-gray-400 my-8 uppercase">
-                            <a href="/about">About</a>
-                        </li>
-                        <li className="border-b border-gray-400 my-8 uppercase">
-                            <a href="/portfolio">Portfolio</a>
-                        </li>
-                        <li className="border-b border-gray-400 my-8 uppercase">
-                            <a href="/contact">Contact</a>
-                        </li>
-                        </ul>
+                        <div className="flex flex-col items-center justify-between min-h-[250px]">
+                            <Link href="/cart" className="border-b border-gray-400 my-8 uppercase">
+                               Cart
+                            </Link>
+                            {status === 'loading' ? ('Loading'):
+                            
+                                session?.user ? (
+                                        <div className="flex flex-col items-center justify-between min-h-[250px]">
+                                            <Link href="/profile" className="text-natural-700">
+                                                {session.user.name}
+                                            </Link>
+                                            <Link href="/order-history" className="dropdown-link">
+                                                Order History
+                                            </Link>
+                                            <div>
+                                                <a href="#" className="dropdown-link" onClick={logoutClickHandler}>
+                                                    Logout
+                                                </a>
+                                            </div>
+                                        </div>
+                                )
+                                :
+                            (
+                                <Link href="/login">
+                                    <a className="p-2">Login</a>
+                                </Link>
+                            )}
+                        </div>
                     </div>
                 </nav>
                 <style>{`

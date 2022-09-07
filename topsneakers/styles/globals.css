@@ -40,3 +40,7 @@ a {
 input, select, textarea {
   @apply rounded border p-2 outline-none ring-slate-500 focus:ring;
 }
+
+.dropdown-link {
+  @apply flex p-2 hover:bg-gray-200;
+}
