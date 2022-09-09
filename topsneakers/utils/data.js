@@ -23,8 +23,6 @@ const data = {
             image:'/images/pandalows1.png',
             price: 120,
             brand: 'Nike',
-            rating: 4.9,
-            NumReviews: 7,
             sizeAvailable: [6, 10],
             sizing:[],
             images:
@@ -42,10 +40,15 @@ const data = {
             slug: 'yzy-350v2-beluga2',
             category: 'Shoes',
             image:'/images/beluga2350v2-1.png',
+            images:
+                [
+                    { src: '/images/beluga2350v2-1.png', key: 1},
+                    { src: '/images/beluga2350v2-2.png', key: 2},
+                    { src: '/images/beluga2350v2-3.png', key: 3},
+                    { src: '/images/beluga2350v2-4.png', key: 4}
+                ],
             price: 240,
             brand: 'Adidas',
-            rating: 4.6,
-            NumReviews: 3,
             sizeAvailable: [6, 10],
             countInStock: 2,
             description:"The Yeezy Beluga 2.0 takes Kanye West's famous adidas sneakers full circle by returning to the colors of the first adidas Yeezy Boost 350 V2."
@@ -55,10 +58,15 @@ const data = {
             slug: 'yzy-700v2-static',
             category: 'Shoes',
             image:'/images/static700v2-1.png',
+            images:
+                [
+                    { src: '/images/static700v2-1.png', key: 1},
+                    { src: '/images/static700v2-2.png', key: 2},
+                    { src: '/images/static700v2-3.png', key: 3},
+                    { src: '/images/static700v2-4.png', key: 4}
+                ],
             price:250,
             brand: 'Adidas',
-            rating: 4.5,
-            NumReviews: 1,
             sizeAvailable: [8, 10.5],
             countInStock: 2,
             description:" This Yeezy 700 comes with a grey upper with white accents, white midsole, and a black sole. These sneakers released in December 2018 and retailed for $300."
@@ -68,10 +76,15 @@ const data = {
             slug: 'aj1-high-shadow2',
             category: 'Shoes',
             image:'/images/shadow2aj1-1.png',
+            images:
+                [
+                    { src: '/images/shadow2aj1-1.png', key: 1},
+                    { src: '/images/shadow2aj1-2.png', key: 2},
+                    { src: '/images/shadow2aj1-3.png', key: 3},
+                    { src: '/images/shadow2aj1-4.png', key: 4}
+                ],
             price: 170,
             brand: 'Jordan',
-            rating: 4.8,
-            NumReviews: 6,
             sizeAvailable: [8, 10.5],
             countInStock: 2,
             description:'The upper of the Air Jordan 1 Shadow 2.0 is made of a black leather base with Light Smoke Grey overlays. A classic Wings logo appears on the lateral ankle wrap while a woven Nike Air label is stitched atop the tongue to complete the look.'
@@ -81,10 +94,15 @@ const data = {
             slug: 'bapesta-low-bw',
             category: 'Shoes',
             image:'/images/bwbapestalow1.png',
+            images:
+                [
+                    { src: '/images/bwbapestalow1.png', key: 1},
+                    { src: '/images/bwbapestalow2.png', key: 2},
+                    { src: '/images/bwbapestalow3.png', key: 3},
+                    { src: '/images/bwbapestalow4.png', key: 4}
+                ],
             price: 170,
             brand: 'BAPE',
-            rating: 4.5,
-            NumReviews: 1,
             sizeAvailable: [10.5],
             countInStock: 1,
             description:'A Bathing Ape is a Japanese streetwear brand founded by Nigo in 1993. Popularized with quirky graphic t-shirts and colorful hoodies, Bape entered the footwear realm with the Bapesta sneaker, arriving in bright colorways and distinct  collaborations with brands like Marvel, Spongebob, MoWax, Kanye West, jjjound and more.'
@@ -94,10 +112,15 @@ const data = {
             slug: 'nb-550-wg',
             category: 'Shoes',
             image:'/images/wgnb550-1.png',
+            images:
+                [
+                    { src: '/images/wgnb550-1.png', key: 1},
+                    { src: '/images/wgnb550-2.png', key: 2},
+                    { src: '/images/wgnb550-3.png', key: 3},
+                    { src: '/images/wgnb550-4.png', key: 4}
+                ],
             price: 100,
             brand: 'New Balance',
-            rating: 4.3,
-            NumReviews: 12,
             sizeAvailable: [10.5],
             countInStock: 1,
             description:'The New Balance 550 White Grey features a white leather upper with monochromatic perforated leather overlays and puffed New Balance logos. From there, a woven New Balance Basketball tongue label and matching sole completes the design.'
@@ -107,10 +130,13 @@ const data = {
             slug: 'ee-short-bvr',
             category: 'Apparel',
             image:'/images/eeshort-black1.png',
+            images:
+                [
+                    { src: '/images/eeshort-black1v2.png', key: 1},
+                    { src: '/images/eeshort-black2.png', key: 2}
+                ],
             price: 148,
             brand: 'Eric Emanuel',
-            rating: 4.8,
-            NumReviews: 3,
             sizeAvailable: ['L'],
             countInStock: 1,
             description: "Simple yet Classic Mesh Basketball Shorts designed by New York City's Own Eric Emanuel."
@@ -120,10 +146,12 @@ const data = {
             slug: 'ee-short-bs',
             category: 'Apparel',
             image:'/images/eeshort-burnt1.png',
+            images:
+                [
+                    { src: '/images/eeshort-burnt1.png', key: 1},
+                ],
             price: 148,
             brand: 'Eric Emanuel',
-            rating: 4.5,
-            NumReviews: 1,
             sizeAvailable: ['L'],
             countInStock: 1,
             description: "Simple yet Classic Mesh Basketball Shorts designed by New York City's Own Eric Emanuel."
